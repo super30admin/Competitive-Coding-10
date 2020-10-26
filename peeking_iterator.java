@@ -1,5 +1,7 @@
 // Java Iterator interface reference:
 // https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html
+//Time-O(1)
+//Space-O(1)
 import java.util.*;
 class PeekingIterator implements Iterator<Integer> {
     Integer next_val=null;
