@@ -36,4 +36,48 @@ class Solution {
         
         return profit;
     }
+  
+      
+      /*
+        Time : O(N) | single pass
+        Space : O(1)
+        ---
+        Leetcode yes
+      */
+  
+       /*
+          Approach
+          
+            [1, 7, 2, 3, 6, 7, 6, 7]
+            options :
+            buy         sell        profit
+            1             7             6
+            2             3             1
+            3             6             3
+            6             7             1
+            6             7             1
+           --------------------------------
+            profit = 12;
+            
+            so if we consider from second row,
+            1,3,1,1 profit is same as, buying at 2 and selling at 7,
+            generating profit of 5.
+            so in order to maximise profite we can simply check if current price is higher than the previous price, if so then carry out the transaction and add it to the profit.
+            
+        */
+      public int maxProfit(int[] prices) {
+        if(prices == null || prices.length == 0) return 0;
+        int n = prices.length;
+        
+        int profit = 0;
+        for(int i = 1; i < n; i++){
+            int prof = prices[i] - prices[i-1];
+            
+            if(prof > 0){
+                profit += prof; 
+            }
+            
+        }
+        return profit;
+    }
 }
