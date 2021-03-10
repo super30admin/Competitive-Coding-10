@@ -23,7 +23,6 @@ class Solution:
         if not prices or len(prices) == 0:
             return 0
 
-
         max_profit = 0
         min_price_to_buy = prices[0]
 
