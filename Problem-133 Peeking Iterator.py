@@ -1,10 +1,9 @@
 # 284. Peeking Iterator
 # https://leetcode.com/problems/peeking-iterator/
 
-# Logic:
-
-# Time Complexity: 
-# Space Complexity: 
+# Logic: For peeking, we will always store the latest value in a variable. 
+# When peek is called we return this variable. When next is called we will 
+# return peek and advance peak if there is a next number possible.
 
 # Below is the interface for Iterator, which is already defined for you.
 #
@@ -33,29 +32,38 @@ class PeekingIterator:
         Initialize your data structure here.
         :type iterator: Iterator
         """
-        pass
+        self.itr = iterator
+        self._next = self.itr.next()
         
 
     def peek(self):
+        # Time Complexity: O(1)
         """
         Returns the next element in the iteration without advancing the iterator.
         :rtype: int
         """
-        pass
+        return self._next
         
 
     def next(self):
+        # Time Complexity: O(1)
         """
         :rtype: int
         """
-        pass
+        res = self._next
+        self._next = None
+        
+        if self.itr.hasNext():
+            self._next = self.itr.next()
+        return res
         
 
     def hasNext(self):
+        # Time Complexity: O(1)
         """
         :rtype: bool
         """
-        pass
+        return self._next is not None
         
 
 # Your PeekingIterator object will be instantiated and called as such:
