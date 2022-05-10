@@ -1,4 +1,7 @@
 /*
+    
+    I bombed this question... Could not even come up with a brute force.. sigh
+    
     We can do as many transactions as possible...
     Greedy: This is when we will compare buying on i and selling on i+1 price
     if there is any profit, add to total profit..
