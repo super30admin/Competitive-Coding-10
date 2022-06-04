@@ -1,6 +1,8 @@
 import java.util.Iterator;
 import java.util.List;
 
+// TC : O(n) n - number of elements to iterate over
+// SC : O(1)
 public class PeekingIterator implements Iterator<Integer> {
     Integer current, future;
     Iterator<Integer> iterator;
@@ -12,8 +14,7 @@ public class PeekingIterator implements Iterator<Integer> {
 
     // Returns the next element in the iteration without advancing the iterator.
     public Integer peek() {
-        if(future == null) return current;
-        return future;
+        return future == null ? current : future;
     }
 
     // hasNext() and next() should behave the same as in the Iterator interface.
@@ -32,8 +33,7 @@ public class PeekingIterator implements Iterator<Integer> {
 
     @Override
     public boolean hasNext() {
-        if(iterator.hasNext()) return true;
-        return future != null;
+        return iterator.hasNext() || future != null;
     }
 
     public static void main(String[] args) {
