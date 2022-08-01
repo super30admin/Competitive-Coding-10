@@ -1,3 +1,7 @@
+//****BUY AND SELL STOCK-2****
+//Time complexity: o(n);
+//Space complexity:o(1);
+
 class Solution {
     public int maxProfit(int[] prices) {
         int slow=0;
