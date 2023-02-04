@@ -1,0 +1,21 @@
+//TimeComplexity.   O(n)
+//SpaceComplexity.  O(1)
+
+class Solution {
+    public int maxProfit(int[] prices) {
+        
+  
+        int end = 1;
+        int max = 0;
+
+        while(end < prices.length){
+
+           if(prices[end] > prices[end-1]){
+               max += prices[end] - prices[end-1];
+           }
+
+        end++;
+        }
+        return max;
+    }
+}
