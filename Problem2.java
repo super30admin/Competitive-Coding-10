@@ -1,43 +1,40 @@
-import java.util.Stack;
-
-// Time Complexity :O(n) where n is the length of the num arrays
-// Space Complexity :O(n) where n is the length of the num arrays
+// Time Complexity : O(1) for all three methods
+// Space Complexity : O(1) no auxiliary space used
 // Did this code successfully run on Leetcode :yes
+import java.util.Iterator;
+
 public class Problem2 {
-    public String removeKdigits(String num, int k) {
+    class PeekingIterator implements Iterator<Integer> {
+        private Iterator<Integer> it;
+        private Integer next;
+        public PeekingIterator(Iterator<Integer> iterator) {
+            // initialize any member here.
+            this.it = iterator;
+            this.next = iterator.next();
 
-        Stack<Character> st = new Stack<Character>();
-        StringBuilder result = new StringBuilder();
-        st.push(num.charAt(0));
+        }
 
-        for(int i = 1; i<num.length(); i++){
-            Character c = num.charAt(i);
-            int currentDigit = c-'0';
+        // Returns the next element in the iteration without advancing the iterator.
+        public Integer peek() {
+            return next;
+        }
 
-            while(!st.isEmpty() && currentDigit < st.peek()-'0' && k>0){
-                st.pop();
-                k--;
+        // hasNext() and next() should behave the same as in the Iterator interface.
+        // Override them if needed.
+        @Override
+        public Integer next() {
+            int current = next;
+            if(it.hasNext()){
+                next = it.next();
+            }else{
+                next = null;
             }
-            st.push(c);
-        }
-        //pop more if needed
-        while(k>0){
-            st.pop();
-            k--;
+            return current;
         }
 
-        while(!st.isEmpty()){
-            result.insert(0, st.pop());
+        @Override
+        public boolean hasNext() {
+            return next != null;
         }
-        //remove leading 0s
-        int i = 0;
-        while(i < result.length() && result.charAt(i) == '0'){
-            i++;
-        }
-        result.delete(0, i);
-
-        if(result.isEmpty()) return "0";
-        return result.toString();
     }
-
 }

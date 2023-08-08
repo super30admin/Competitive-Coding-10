@@ -1,44 +1,29 @@
-// Time Complexity :O(n) where n is the length of the tokens arrays
-// Space Complexity :O(n) where n is the length of the tokens arrays
+// Time Complexity :O(n) where n is the length of the prices array
+// Space Complexity :O(1) as no auxiliary space used
 // Did this code successfully run on Leetcode :yes
-import java.util.HashSet;
-import java.util.Stack;
-
 public class Problem1 {
-    public int evalRPN(String[] tokens) {
-        if(tokens.length < 2){
-            return Integer.parseInt(tokens[0]);
+    public int maxProfit(int[] prices) {
+
+        if(prices == null || prices.length < 1){
+            return 0;
         }
 
-        int len = tokens.length;
-        Stack<Integer> st = new Stack<>();
-        HashSet<String> set = new HashSet<>();
-        set.add("+");
-        set.add("-");
-        set.add("*");
-        set.add("/");
+        int len = prices.length;
+        int start = 0;
+        int end = 1;
+        int peak = prices[start];
+        int profit = 0;
 
-        for(int i =0; i<len; i++){
-            String currentStr = tokens[i];
-            if(set.contains(currentStr)){
-                int rightOperand = st.pop();
-                int leftOperand = st.pop();
-                //evaluate
-                int expr = 0;
-                if(currentStr.equals("+")){
-                    expr = leftOperand + rightOperand;
-                }else if(currentStr.equals("-")){
-                    expr = leftOperand - rightOperand;
-                }else if(currentStr.equals("*")){
-                    expr = leftOperand * rightOperand;
-                }else{
-                    expr = leftOperand / rightOperand;
-                }
-                st.push(expr);
-            }else{
-                st.push(Integer.parseInt(currentStr));
+        while(end < len){
+            peak = prices[start];
+            while(end < len && prices[end] > peak){
+                peak = prices[end];
+                end++;
             }
+            profit = profit + peak - prices[start];
+            start = end;
+            end = start+1;
         }
-        return st.pop();
+        return profit;
     }
 }
