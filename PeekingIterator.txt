@@ -1,0 +1,36 @@
+// Time Complexity o(1) Space Complexity o(1)
+import java.util.Iterator;
+
+public class Problem2 {
+    class PeekingIterator implements Iterator<Integer> {
+        private Iterator<Integer> it;
+        private Integer next;
+        public PeekingIterator(Iterator<Integer> iterator) {
+            // initialize any member here.
+            this.it = iterator;
+            this.next = iterator.next();
+
+        }
+
+        public Integer peek() {
+            return next;
+        }
+
+        
+        @Override
+        public Integer next() {
+            int current = next;
+            if(it.hasNext()){
+                next = it.next();
+            }else{
+                next = null;
+            }
+            return current;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return next != null;
+        }
+    }
+}
