@@ -18,7 +18,7 @@ class PeekingIterator:
     https://leetcode.com/problems/peeking-iterator/description/
 
     Solution:
-    1. The key idea is to be one step ahead of the default Iterator(). This is evident from the constructor of PeekingIterator() where we call the Iterator object, fetch the next element and save it in an auxiliary variable "curr" even though the user of PeekingIterator() has not requested the next element. Whenever, the user requests the next element from the PeekingIterator(), we not return the value of "curr" but also fetch the next element from the Iterator object and update "curr" with the newly fetched element.
+    1. The key idea is to be one step ahead of the default Iterator(). This is evident from the constructor of PeekingIterator() where we call the Iterator object, fetch the next element and save it in an auxiliary variable "curr" even though the user of PeekingIterator() has not requested the next element. Whenever, the user requests the next element from the PeekingIterator(), we not only return the value of "curr" but also fetch the next element from the Iterator object and update "curr" with the newly fetched element so that we are ready for a future call to PeekingIterator.next().
     Time: O(1), Space: O(1)
     '''
     def __init__(self, iterator):
