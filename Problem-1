@@ -1,0 +1,23 @@
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+
+// Iterate on the array and keep track of the buy price and the max profit
+// If the current price is less than the current buy update buy
+// Calculate the profit for every day with the current buy and return the max profit
+
+
+class Solution {
+    public int maxProfit(int[] prices) {
+        int buy = prices[0];
+        int sell = 0;
+        int maxProfit = 0;
+        for(int i = 1; i < prices.length; i++) {
+            if(prices[i] < buy)
+                buy = prices[i];
+            sell = prices[i];
+            if(sell - buy > maxProfit)
+                maxProfit = sell - buy;
+        } 
+        return maxProfit;
+    }
+}
